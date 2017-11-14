@@ -102,37 +102,47 @@ print(research("AAACACCCCBAAAAACBBBBABBCCCABAAABBAAAAAAAAAABBBBBAAABCCCACCCCBBBB
 # Present the participants with the highest and lowest values in height, weight, and BMI.
 # (Hint: You can use any built-in function in python for maximum values). Finally provide a figure that include these people (x-axis as height*height and y-axis as weight).
 
-#Open and read the text with a matrix
+# Open and read the text with a matrix
 matrix = []
-with open('BMI_data.txt') as f: # a with block will auto close your file after the statements within it
-        for line in f:
-            line = line.strip() # strip off any trailing whitespace(including '\n')
-            matrix.append(line.split())
-#print(matrix)
+with open('BMI_data.txt') as f:  # a with block will auto close your file after the statements within it
+    for line in f:
+        line = line.strip()  # strip off any trailing whitespace(including '\n')
+        matrix.append(line.split())
 
-#Find the text file row number.
+
+# print(matrix)
+
+# Find the text file row number.
 def file_lengthy(fname):
     with open(fname) as f:
         for i, l in enumerate(f):
             pass
     return i + 1
-file_length=file_lengthy('BMI_data.txt')
-print(file_length)
 
-#Append the BMIs for each row of the matrix.
+
+file_length = file_lengthy('BMI_data.txt')
+print(file_length)
+xaxis = []
+yaxis = []
+
+# Append the BMIs for each row of the matrix.
 for x in range(0, (file_length)):
     if x == 0:
         matrix[0].append('BMI')
     else:
-        height=float(matrix[x][4])
-        weight=float(matrix[x][5])
-        BMI=weight/(height**height)
-        BMI=str(BMI)
+        height = float(matrix[x][4])
+        weight = float(matrix[x][5])
+        print(height)
+        print(height**2)
+        xaxis.append(height**2)
+        yaxis.append(weight)
+        BMI = weight / (height ** height)
+        BMI = str(BMI)
         matrix[x].append(BMI)
 
 print(matrix)
 
-#Create a new text file that not a matrix.
+# Create a new text file that not a matrix.
 with open('BMI_data2.txt', "w") as myfile:
     for line in matrix:
         print(line)
@@ -141,3 +151,20 @@ with open('BMI_data2.txt', "w") as myfile:
             myfile.write("%s\t" % row)
         myfile.write("\n")
 open('BMI_data2.txt')
+
+# Let's visualize the BMI data. (x-axis as height*height and y-axis as weight).
+
+import matplotlib.pyplot as plt
+
+print(xaxis)
+print(yaxis)
+
+plt.plot(xaxis, yaxis)
+# Set the x axis label of the current axis.
+plt.xlabel('height^2')
+# Set the y axis label of the current axis.
+plt.ylabel('weight')
+# Set a title
+plt.title('BMI graph!')
+# Display a figure.
+plt.show()
