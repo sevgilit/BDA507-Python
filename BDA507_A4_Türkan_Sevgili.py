@@ -25,15 +25,18 @@ for i in range(3):
 # Then please change the border content to 8 and the inside content to 7 separately.
 # Please try to do it with the short cuts that we have done in the class (this is Part-A) as well as using 2 for loops (this is Part-B).
 
+#Create a numpy array with all items 9
 import numpy as np
 #using no.full
 all_9 = np.full((7, 7), 9, dtype=np.uint)
 print(all_9)
 
+#change all items to 8
 print("8 on the border in the array")
 all_9[0:7,0:7]=8
 print(all_9)
 
+#change inside content to 7
 print("7 inside in the array")
 all_9[1:-1,1:-1] = 7
 print(all_9)
@@ -42,7 +45,6 @@ print(all_9)
 # Q3.
 # Please prepare the checkerboard pattern with using for loops as opposed to the one that we have done during our last class.
 # The code for checkerboard pattern that we have done during class is as follows:
-
 
 """
 print ("Checkerboard pattern:")
@@ -53,13 +55,15 @@ print(x)
 """
 
 all_0 = np.zeros((8,8),dtype=int)
+print(all_0)
 
 for i in range(8):
     for j in range(8):
         if (i+j)%2==0 :
-            all_0[i,j]=1
-        else:
             all_0[i,j]=0
+        else:
+            all_0[i,j]=1
+print("Checkerboard pattern:")
 print(all_0)
 
 # Q4.
@@ -73,11 +77,13 @@ print(titanic_test)
 titanic_test.dtypes
 
 # (b) display the dimensions (rows and columns),
-titanic_test.shape# Check dimensions
-# (418, 11)
+# Check dimensions
+titanic_test.shape
+# (418, 12)
 
 # (c) show the first 10 lines,
-print(titanic_test.head(10))  # Check the first 10 rows
+# Check the first 10 rows
+print(titanic_test.head(10))
 
 # (d) show the descriptive statistics both for numeric and categorical data,
 print(titanic_test.describe() )
@@ -89,18 +95,16 @@ print(categorical)
 titanic_test[categorical].describe()
 
 # (e) change the survived column to categorical data (as “yes” and “no” values),
-#1.yol
-titanic_test.survived=titanic_test.survived.astype(str)
-print(titanic_test.survived)
 
-#2.yol
-index=np.where(titanic_train["Survived"]==1)
+import numpy as np
+index=np.where(titanic_test["Survived"]==1)
 print(index)
-titanic_train["Survived"].loc[index]="Y"
-print(titanic_train.Survived)
+titanic_test["Survived"].loc[index]="Y"
+print(titanic_test.Survived)
 
-index=np.where(titanic_train["Survived"]==0)
-titanic_train["Survived"].loc[index]="N"
+index=np.where(titanic_test["Survived"]==0)
+titanic_test["Survived"].loc[index]="N"
+print(titanic_test.Survived)
 
 
 # (f) display the number of passengers that have used A-B-C-D-E-F cabins,
@@ -149,33 +153,34 @@ len(missing[0])
 # The code that we have gone over in the class includes the relevant function you need to run.
 
 titanic_test.dtypes
+import matplotlib
 
-#PassengerId
+#Plot the histogram of PassengerId
 titanic_test.hist(column='PassengerId',     # Column to plot
                    figsize=(9,6),           # Plot size
-                   bins=20)                 # Number of histogram bins
+                   bins=10)                 # Number of histogram bins
 
-#Pclass
+#Plot the histogram of Pclass
 titanic_test.hist(column='Pclass',  # Column to plot
                    figsize=(9,6),   # Plot size
                    bins=20)         # Number of histogram bins
 
-#Age
+#Plot the histogram of Age
 titanic_test.hist(column='Age',     # Column to plot
                    figsize=(9,6),   # Plot size
                    bins=20)         # Number of histogram bins
 
-#SibSp
+#Plot the histogram of SibSp
 titanic_test.hist(column='SibSp',   # Column to plot
                    figsize=(9,6),   # Plot size
                    bins=20)         # Number of histogram bins
 
-#Parch
+#Plot the histogram of Parch
 titanic_test.hist(column='Parch',   # Column to plot
                    figsize=(9,6),   # Plot size
                    bins=20)         # Number of histogram bins
 
-#Fare
+#Plot the histogram of Fare
 titanic_test.hist(column='Fare',    # Column to plot
                    figsize=(6,6),   # Plot size
                    bins=30)         # Number of histogram bins
