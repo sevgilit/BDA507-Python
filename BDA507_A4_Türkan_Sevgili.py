@@ -17,6 +17,7 @@ print(clone_x)
 
 for i in range(3):
     for j in range(7):
+        #remainder of initial values divided by 8
         print(x[i, j] % 8)
 
 
@@ -59,6 +60,7 @@ print(all_0)
 
 for i in range(8):
     for j in range(8):
+        #if row(i) and column(j) total is even, matrix [i,j] item is 0
         if (i+j)%2==0 :
             all_0[i,j]=0
         else:
