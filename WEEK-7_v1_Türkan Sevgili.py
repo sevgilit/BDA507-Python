@@ -56,7 +56,7 @@ the control of the loop to the top
 """
 
 for x in range(7):
-    if (x == 3 or x==6):
+   if (x == 3 or x==6):
         continue
     print(x)
 
@@ -106,9 +106,12 @@ temp_convert("xyz")
 temp_convert(100000)
 
 
+
 """
 TASK: Please explain briefly what the code below does!
 """
+
+Argüman 1 den küçükse hata veriyor değilse argümanın kendisini döndürüyor.
 
 #!/usr/bin/python3
 def functionName( level ):
@@ -124,7 +127,6 @@ try:
 except Exception as e:
    print ("error in level argument",e.args[0])
 
-
 """
 ASSERTIONS:
 An assertion is a sanity-check that you can turn on or turn off when you are done with your testing of the program.
@@ -136,10 +138,9 @@ Programmers often place assertions at the start of a function to check for valid
 and after a function call to check for valid output.
 """
 
-
 #!/usr/bin/python
 def KelvinToFahrenheit(Temperature):
-   assert((Temperature >= 0),"Colder than absolute zero!")
+   assert(Temperature >= 0),"Colder than absolute zero!"
    return ((Temperature-273)*1.8)+32
 
 print(KelvinToFahrenheit(273))
@@ -167,6 +168,15 @@ assume that the user has entered 5 and your code should give the outputs from 5 
 Finito!
 """
 
+def countdown(n):
+    while n>0:
+        print(n)
+        n=n-1
+    print("Finito!")
+
+countdown(10)
+
+
 # Countdown example that will produce the output as follows: n, n-1, n-2, ..... 3, 2, 1, 'Finito!'
 def countdown(n):
     if n == 0:
@@ -179,8 +189,19 @@ countdown(5)
 """
 TASK-2: Please modify the code above to get input from the user. And your script should provide the countdown from
 this input until zero. You need to call the same function above.
+
+ikişer ikişer azalacak
 """
 
+number = int(input("Input"))
+
+def countdown(Input):
+    if Input <= 0:
+        print("Finito!")
+    else:
+        print(Input)
+        countdown(Input-2)
+countdown(number)
 
 """
 Roughly speaking, recursion and iteration perform the same kinds of tasks:
@@ -218,6 +239,25 @@ def fibonacci_rec
 
 """
 
+def fibonacci_iter(n):
+    c=1
+    x, y = 0, 1
+    while c < n:
+        x, y = y, x+y
+        c += 1
+    print(y)
+
+fibonacci_iter(10)
+
+
+def fibonacci_rec(n):
+    if n==1 or n==2:
+        return 1
+    else:
+        return fibonacci_rec(n-1)+fibonacci_rec(n-2)
+
+fibonacci_rec(10)
+
 
 """
 DESIGNING RECURSIVE FUNCTIONS:
@@ -242,7 +282,26 @@ def factorial_rec:
 
 
 """Unscramble the lines to create a program that produces a recursive ruler-like design. For example, when n=3 the program should output the following design.
- 
+"""
+
+def factorial_iter(num):
+    b=1
+    while (num>0):
+        b=b*num
+        num=num-1
+    return b
+
+factorial_iter(4)
+
+def factorial_rec(n):
+    if n==1:
+        return 1
+    else:
+        return n*factorial_rec(n-1)
+
+factorial_rec(4)
+
+""""
 -
 --
 -
@@ -252,7 +311,7 @@ def factorial_rec:
 -
 
 TASK-5: Please provide the necessary ordering to provide the output above:
-...
+"""
 def ruler(n):
 else:
 print('-')
@@ -260,10 +319,18 @@ if n == 1:
 ruler(n - 1)
 ruler(n - 1)
 print(n * '-')
-...
-"""
 
 
+def ruler(n):
+    if n == 1:
+        print('-')
+
+    else:
+        ruler(n - 1)
+        print(n * '-')
+        ruler(n - 1)
+
+ruler(3)
 
 """
 ==================================
